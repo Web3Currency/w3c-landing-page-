@@ -1,0 +1,17 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; video-src 'self' blob: https:; connect-src 'self' https://esm.sh https://fonts.googleapis.com
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+/dist/*
+  Cache-Control: max-age=31536000, immutable
+  
+/public/*
+  Cache-Control: max-age=3600, public
+
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
