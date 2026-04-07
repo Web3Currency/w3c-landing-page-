@@ -1,0 +1,19 @@
+# W3C Token — Web3 Currency
+# https://web3currency.online
+
+[DOCUMENTATION]
+ORG_NAME="Web3 Currency"
+ORG_URL="https://web3currency.online"
+ORG_DESCRIPTION="Web3 and Cryptocurrency Education Community serving Nigeria and beyond"
+ORG_TWITTER="Web3currencyng"
+
+[[CURRENCIES]]
+CODE="W3C"
+ISSUER="GCIPTMBGZ2IXATBZPZTLQYT7OLUC7IJTDBKTFIUAFM4A35R6UU5BLN3W"
+DISPLAY_DECIMALS=7
+NAME="Web3Currency Token"
+DESC="Official community token of Web3 Currency"
+IS_ASSET_ANCHORED=false
+IS_UNLIMITED=false
+STATUS="live"
+HOME_DOMAIN="web3currency.online"

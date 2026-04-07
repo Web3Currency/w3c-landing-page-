@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>W3C Token — Web3Currency</title>
+  <meta name="description" content="Official W3C Token on Pi Network — Web3 Currency community token." />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #04040f; --surface: #0b0b1e; --border: rgba(99,60,255,0.18);
+      --purple: #6c3fff; --violet: #a855f7; --cyan: #00e5ff; --gold: #f5c542;
+      --text: #e8e6ff; --muted: #7b78a8; --glow: rgba(108,63,255,0.35);
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(108,63,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(108,63,255,0.04) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+    .orb { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+    .orb-1 { width: 500px; height: 500px; background: rgba(108,63,255,0.12); top: -150px; left: -100px; }
+    .orb-2 { width: 400px; height: 400px; background: rgba(0,229,255,0.06); bottom: 0; right: -100px; }
+    .container { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 60px 24px 80px; }
+    .header { text-align: center; margin-bottom: 56px; animation: fadeUp 0.7s ease both; }
+    .network-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(108,63,255,0.12); border: 1px solid var(--border); border-radius: 100px; padding: 6px 16px; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--violet); letter-spacing: 0.08em; margin-bottom: 28px; }
+    .network-badge .dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; animation: pulse 2s infinite; }
+    .token-logo { width: 88px; height: 88px; background: linear-gradient(135deg, var(--purple), var(--violet)); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 22px; font-weight: 700; color: #fff; box-shadow: 0 0 40px var(--glow); margin: 0 auto 20px; }
+    h1 { font-size: clamp(2rem,5vw,3rem); font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(120deg,#fff 30%,var(--violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+    .tagline { color: var(--muted); font-size: 15px; max-width: 380px; margin: 0 auto; line-height: 1.6; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; animation: fadeUp 0.7s 0.15s ease both; }
+    @media(max-width:520px){ .grid-2 { grid-template-columns: 1fr; } }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px 24px; transition: border-color 0.25s, transform 0.25s; }
+    .card:hover { border-color: rgba(108,63,255,0.45); transform: translateY(-2px); }
+    .card-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+    .card-value { font-size: 22px; font-weight: 800; color: #fff; }
+    .card-value.mono { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 400; color: var(--cyan); word-break: break-all; line-height: 1.6; }
+    .card-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .card-accent { border-left: 3px solid var(--purple); }
+    .card-accent-cyan { border-left: 3px solid var(--cyan); }
+    .card-accent-gold { border-left: 3px solid var(--gold); }
+    .status-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 100px; font-size: 11px; font-family: 'Space Mono', monospace; font-weight: 700; }
+    .pill-green { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+    .pill-purple { background: rgba(108,63,255,0.12); color: var(--violet); border: 1px solid rgba(108,63,255,0.25); }
+    .pill-cyan { background: rgba(0,229,255,0.08); color: var(--cyan); border: 1px solid rgba(0,229,255,0.2); }
+    .issuer-wrap { display: flex; align-items: flex-start; gap: 12px; }
+    .issuer-wrap .icon { width: 36px; height: 36px; background: rgba(108,63,255,0.12); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .copy-btn { margin-top: 8px; background: rgba(108,63,255,0.1); border: 1px solid var(--border); color: var(--violet); font-family: 'Space Mono', monospace; font-size: 10px; padding: 5px 12px; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+    .copy-btn:hover { background: rgba(108,63,255,0.22); }
+    .links-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; animation: fadeUp 0.7s 0.35s ease both; }
+    .link-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid var(--border); background: var(--surface); color: var(--text); transition: all 0.2s; }
+    .link-btn:hover { border-color: var(--purple); background: rgba(108,63,255,0.1); color: #fff; }
+    .link-btn.primary { background: linear-gradient(135deg,var(--purple),var(--violet)); border-color: transparent; color: #fff; box-shadow: 0 4px 20px rgba(108,63,255,0.3); }
+    .link-btn.primary:hover { box-shadow: 0 4px 30px rgba(108,63,255,0.5); transform: translateY(-1px); }
+    footer { text-align: center; margin-top: 60px; font-size: 12px; color: var(--muted); font-family: 'Space Mono', monospace; animation: fadeUp 0.7s 0.45s ease both; }
+    footer a { color: var(--violet); text-decoration: none; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+    .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px); background: #1a1a2e; border: 1px solid var(--purple); color: #fff; padding: 10px 22px; border-radius: 100px; font-size: 13px; font-family: 'Space Mono', monospace; transition: transform 0.3s ease; z-index: 999; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="container">
+    <div class="header">
+      <div class="network-badge"><span class="dot"></span>PI NETWORK TESTNET</div>
+      <div class="token-logo">W3C</div>
+      <h1>Web3 Currency Token</h1>
+      <p class="tagline">Official community token of Web3 Currency — powering education, trading, and Web3 adoption in Nigeria.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card card-accent">
+        <div class="card-label">Asset Code</div>
+        <div class="card-value">W3C</div>
+        <div class="card-sub">Stellar Asset Standard</div>
+      </div>
+      <div class="card card-accent-gold">
+        <div class="card-label">Total Supply</div>
+        <div class="card-value">942,000</div>
+        <div class="card-sub">942,000 Thousand W3C</div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card card-accent-cyan">
+        <div class="card-label">Decimals</div>
+        <div class="card-value">7</div>
+        <div class="card-sub">Pi Network standard</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Status</div>
+        <div class="status-row">
+          <span class="pill pill-green">● LIVE</span>
+          <span class="pill pill-purple">TESTNET</span>
+          <span class="pill pill-cyan">VERIFIED</span>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:14px; animation: fadeUp 0.7s 0.25s ease both;">
+      <div class="card-label">Issuer Address</div>
+      <div class="issuer-wrap">
+        <div class="icon">🔑</div>
+        <div>
+          <div class="card-value mono" id="issuer-address">GCIPTMBGZ2IXATBZPZTLQYT7OLUC7IJTDBKTFIUAFM4A35R6UU5BLN3W</div>
+          <button class="copy-btn" onclick="copyIssuer()">⎘ COPY ADDRESS</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid-2" style="animation: fadeUp 0.7s 0.3s ease both;">
+      <div class="card">
+        <div class="card-label">Home Domain</div>
+        <div class="card-value mono">web3currency.online</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Network</div>
+        <div class="card-value" style="font-size:16px;">Pi Network</div>
+        <div class="card-sub">Built on Stellar Core</div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:14px; animation: fadeUp 0.7s 0.3s ease both;">
+      <div class="card-label">About W3C Token</div>
+      <p style="font-size:14px; color:var(--muted); line-height:1.8; margin-top:8px;">
+        W3C is the native utility token of <strong style="color:var(--text)">Web3 Currency</strong> — a Web3 and cryptocurrency education platform serving a growing Nigerian audience. The token powers community incentives, P2P trading reputation, and the W3C Utility App ecosystem on Pi Network.
+      </p>
+    </div>
+    <div class="links-grid">
+      <a href="https://web3currency.online" class="link-btn primary" target="_blank">🌐 Main Website</a>
+      <a href="https://explorer.testnet.minepi.com/accounts/YOUR_ISSUER_PUBLIC_KEY_HERE" class="link-btn" target="_blank">🔍 Pi Explorer</a>
+      <a href="https://web3currency.online/.well-known/stellar.toml" class="link-btn" target="_blank">📄 stellar.toml</a>
+      <a href="https://w3c.vercel.app" class="link-btn" target="_blank">📱 W3C App</a>
+    </div>
+    <footer>
+      <p>© 2026 <a href="https://web3currency.online">Web3 Currency</a> · W3C Token on Pi Network</p>
+      <p style="margin-top:6px; opacity:0.5;">web3currency.online · stellar.toml verified</p>
+    </footer>
+  </div>
+  <div class="toast" id="toast">Address copied! ✓</div>
+  <script>
+    function copyIssuer() {
+      const addr = document.getElementById('issuer-address').innerText;
+      navigator.clipboard.writeText(addr).then(() => {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2500);
+      });
+    }
+  </script>
+</body>
+</html>
