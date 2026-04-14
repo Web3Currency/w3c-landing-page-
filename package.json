@@ -1,1 +1,1 @@
-{"scripts":{"build":"vite build","dev":"vite","start":"vite preview"},"dependencies":{"react":"latest","react-dom":"latest","@vercel/speed-insights":"latest"},"devDependencies":{"vite":"latest","@vitejs/plugin-react":"latest","typescript":"latest"}}
+{"scripts":{"build":"vite build","dev":"vite","start":"vite preview"},"dependencies":{"react":"latest","react-dom":"latest","@vercel/speed-insights":"latest","vite":"latest","@vitejs/plugin-react":"latest","typescript":"latest"}}
